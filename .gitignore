@@ -7,6 +7,7 @@ dist/
 tmp/
 *.zip
 *.zip.sha256
+*.tgz
 
 .env
 .env.*

@@ -49,6 +49,7 @@ scripts/
   validate-skill.sh
   test-install.sh
   package-skill.sh
+package.json
 docs/
 examples/
 evals/
@@ -139,19 +140,25 @@ The validation script checks required files, `SKILL.md` frontmatter, router link
 ## Package
 
 ```bash
-scripts/package-skill.sh --version v0.1.0
+scripts/package-skill.sh --version v0.1.2
 ```
 
 The archive is written to `dist/`.
 
+The npm package is published to GitHub Packages as:
+
+```text
+@bukowski777/power-platform-interactions-skill
+```
+
 To publish a hosted release, push a version tag:
 
 ```bash
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.1.2
+git push origin v0.1.2
 ```
 
-The release workflow validates the skill, creates the zip, and attaches it to the GitHub release.
+The release workflow validates the skill, creates the zip, publishes the GitHub Package, and attaches the zip to the GitHub release.
 
 ## Security
 

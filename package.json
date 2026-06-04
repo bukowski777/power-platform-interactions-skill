@@ -1,0 +1,48 @@
+{
+  "name": "@bukowski777/power-platform-interactions-skill",
+  "version": "0.1.2",
+  "description": "Installable agent skill for safe Microsoft Power Platform work across Power Automate, Dataverse, Power Apps, Copilot Studio, SharePoint, SQL gateway, ALM, and governance.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bukowski777/power-platform-interactions-skill.git"
+  },
+  "homepage": "https://github.com/bukowski777/power-platform-interactions-skill#readme",
+  "bugs": {
+    "url": "https://github.com/bukowski777/power-platform-interactions-skill/issues"
+  },
+  "keywords": [
+    "power-platform",
+    "power-automate",
+    "power-apps",
+    "dataverse",
+    "copilot-studio",
+    "sharepoint",
+    "sql-server",
+    "ai-builder",
+    "alm",
+    "governance",
+    "codex",
+    "claude-code",
+    "agent-skill"
+  ],
+  "files": [
+    "power-platform-interactions/",
+    "docs/",
+    "examples/",
+    "evals/",
+    "scripts/",
+    "install.sh",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "MAINTENANCE.md",
+    "SECURITY.md"
+  ],
+  "scripts": {
+    "validate": "bash scripts/validate-skill.sh",
+    "package:skill": "bash scripts/package-skill.sh --version v$npm_package_version"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

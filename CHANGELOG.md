@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 - 2026-06-04
+
+- Added npm package metadata for GitHub Packages publication.
+- Updated the release workflow to publish `@bukowski777/power-platform-interactions-skill`.
+- Documented the GitHub Package alongside the release ZIP artifact.
+
 ## 0.1.1 - 2026-06-04
 
 - Raised repository packaging quality to match the existing skill projects.

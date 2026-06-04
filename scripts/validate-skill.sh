@@ -26,6 +26,7 @@ required_files=(
   "CONTRIBUTING.md"
   "LICENSE"
   "MAINTENANCE.md"
+  "package.json"
   "README.md"
   "SECURITY.md"
   "install.sh"
@@ -97,7 +98,7 @@ while IFS= read -r md_file; do
     [[ "${target}" =~ ^https?:// ]] && continue
     [[ -f "$(dirname "${md_file}")/${target}" ]] || fail "broken markdown link in ${md_file#"${ROOT_DIR}/"}: ${link}"
   done < <(grep -Eo '\[[^]]+\]\([^)]+\.md(#[^)]+)?\)' "${md_file}" | sed -E 's/^.*\(([^)]+)\)$/\1/' || true)
-done < <(find "${ROOT_DIR}" -path "${ROOT_DIR}/.git" -prune -o -name '*.md' -print)
+done < <(find "${ROOT_DIR}" \( -path "${ROOT_DIR}/.git" -o -path "${ROOT_DIR}/.waylog" \) -prune -o -name '*.md' -print)
 
 bash -n "${ROOT_DIR}/install.sh" || fail "install.sh has shell syntax errors"
 bash -n "${ROOT_DIR}/scripts/package-skill.sh" || fail "package-skill.sh has shell syntax errors"
@@ -114,6 +115,7 @@ secret_pattern='(AKIA[0-9A-Z]{16}|-----BEGIN (RSA |EC |OPENSSH |DSA )?PRIVATE KE
 secret_scan_file="$(mktemp "${TMPDIR:-/tmp}/power-platform-interactions-secret-scan.XXXXXX")"
 grep -RInIE "${secret_pattern}" \
   --exclude-dir=.git \
+  --exclude-dir=.waylog \
   --exclude-dir=dist \
   --exclude-dir=tmp \
   "${ROOT_DIR}" >"${secret_scan_file}" || true
@@ -124,7 +126,7 @@ if [[ -s "${secret_scan_file}" ]]; then
 fi
 rm -f "${secret_scan_file}"
 
-metadata_files="$(find "${ROOT_DIR}" \( -path "${ROOT_DIR}/.git" -o -path "${ROOT_DIR}/dist" -o -path "${ROOT_DIR}/tmp" \) -prune -o \( -name '.DS_Store' -o -name 'Thumbs.db' -o -name '__MACOSX' \) -print || true)"
+metadata_files="$(find "${ROOT_DIR}" \( -path "${ROOT_DIR}/.git" -o -path "${ROOT_DIR}/.waylog" -o -path "${ROOT_DIR}/dist" -o -path "${ROOT_DIR}/tmp" \) -prune -o \( -name '.DS_Store' -o -name 'Thumbs.db' -o -name '__MACOSX' \) -print || true)"
 if [[ -n "${metadata_files}" ]]; then
   printf '%s\n' "${metadata_files}" >&2
   fail "metadata files must not be included"
