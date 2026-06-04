@@ -1,0 +1,17 @@
+.DS_Store
+Thumbs.db
+__MACOSX/
+
+.waylog/
+dist/
+tmp/
+*.zip
+*.zip.sha256
+
+.env
+.env.*
+!.env.example
+
+solution-exports/
+solution-unpacked/
+power-platform-work/

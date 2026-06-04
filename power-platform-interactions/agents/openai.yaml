@@ -1,0 +1,12 @@
+interface:
+  default_language: project_or_user
+  concise_final_reports: true
+
+policy:
+  tenant_safety:
+    - identify environment and solution before impact
+    - require explicit authorization for import_publish_enable_disable_delete
+    - never store secrets or private run payloads
+  verification:
+    - distinguish local validation from runtime tenant verification
+    - report skipped checks explicitly
